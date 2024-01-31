@@ -5,7 +5,12 @@ import './EntityDescription.css'
 const EntityDescription = ({ getCategoryData }) => {
   const { entityName, category } = useParams();
   const entity = getCategoryData(category).find(entity => entity.name === entityName);
+  console.log("entity",entity)
   const { img, level, description } = entity;
+  console.log("img",img)
+  console.log("level",level)
+  console.log("description",description)
+  
 
   return (
     <div className="desc-card">

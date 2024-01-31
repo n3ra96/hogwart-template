@@ -7,6 +7,7 @@ import HogwartNavbar from './components/Header/HogwartNavbar';
 import Entities from './components/Entities/Entities';
 import EntityDescription from './components/Entities/EntityDescription';
 import About from './components/About'
+import Entity from './components/Entities/Entity';
 
 const App = (props) => {
   const [categories, setCategories] = useState(CATEGORIES);
@@ -21,14 +22,20 @@ const App = (props) => {
     return STATE_MAP[category];
   }
 
-  return (
-    <div>
-        <div className="App">
-          <HogwartNavbar />
-        </div>
-        {/* add routes and route here */}
-    </div>
+  
 
+  return (
+    <Router>
+      <div className="App">
+        <HogwartNavbar />
+      </div>
+      <Routes>
+        <Route path="/" element={<Home categories={categories} />} />
+        <Route path="/about" element={<About/>} />
+        <Route path="/wiki/:category" element={<Entities getCategoryData={getCategoryData} />} />
+        <Route path="/wiki/:category/:entityName" element={<EntityDescription getCategoryData={getCategoryData}  />} />
+      </Routes>
+    </Router>
   );
 }
 
